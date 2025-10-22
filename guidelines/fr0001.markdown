@@ -1,0 +1,69 @@
+# FR0001 Do not use arbitrary indentation to “align” code
+
+Do not use arbitrary number of spaces to make it look like the elements of the code are aligned, where the number of spaces is based on parts of the code that are subject to change.
+
+## Example
+
+Don't do that:
+
+```csharp
+var products = from p in database.Products
+               where filter.matches(p)
+               orderby p.Id
+               select p.Name;
+```
+
+or that:
+
+```csharp
+ICollection<Shape> shapes = [new Square(startPoint, small),
+                             new Square(endPoint, small),
+                             new Line(startPoint, endPoint, weight: 1.0)];
+```
+
+Instead, do:
+
+```csharp
+var products =
+    from p in database.Products
+    where filter.matches(p)
+    orderby p.Id
+    select p.Name;
+```
+
+and:
+
+```csharp
+ICollection<Shape> shapes = [
+    new Square(startPoint, small),
+    new Square(endPoint, small),
+    new Line(startPoint, endPoint, weight: 1.0),
+];
+```
+
+## Reasons
+
+**1.** It is not always straightforward to perform such alignment in an IDE, whereas the standard indentation can be adjusted with <kbd>Tab</kbd> and <kbd>Shift</kbd>+<kbd>Tab</kbd>.
+
+**2.** Less space is available for the actual content.
+
+**3.** The alignment is broken as soon as the text before the aligned block changes. Say, in the previous examples, that `products` get renamed to `productNames`, or the type of `shapes` is changed. This is what you get:
+
+```csharp
+var productNames = from p in database.Products
+               where filter.matches(p)
+               orderby p.Id
+               select p.Name;
+```
+
+and:
+
+```csharp
+IList<Shape> shapes = [new Square(startPoint, small),
+                             new Square(endPoint, small),
+                             new Line(startPoint, endPoint, weight: 1.0)];
+```
+
+If the change is made inside the actual zone where alignment is used, one would need to manually adjust all the involved lines. This, in turn, would make the further diff more complex than is needs to be.
+
+If the change is made somewhere else (such as during refactoring or when using a “replace all” feature), there is a risk that the alignment issue would not be spotted.

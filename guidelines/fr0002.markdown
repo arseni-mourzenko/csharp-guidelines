@@ -1,0 +1,54 @@
+# FR0002 Use consistent line breaks between arguments
+
+When calling a method, either put all arguments on the same line if the resulting line is not too long, or put each argument on its own line otherwise.
+
+## Example
+
+Don't do that:
+
+```csharp
+painter.CreateLine(new(x1, y1), new(x2, y2),
+    colors.SelectedObject,
+    Style.Solid,
+    weight: isCurrent ? 2.25 : 1.0);
+```
+
+or:
+
+```csharp
+painter.CreateLine(
+    new(x1, y1),
+    new(x2, y2),
+    colors.SelectedObject, Style.Solid,
+    weight: isCurrent ? 2.25 : 1.0);
+```
+
+Instead, do:
+
+```csharp
+painter.CreateLine(new(x1, y1), new(x2, y2), colors.SelectedObject, Style.Solid, weight: isCurrent ? 2.25 : 1.0);
+```
+
+or:
+
+```csharp
+painter.CreateLine(
+    new(x1, y1),
+    new(x2, y2),
+    colors.SelectedObject,
+    Style.Solid,
+    weight: isCurrent ? 2.25 : 1.0);
+```
+
+## Reasons
+
+**1.** When reading code, it is important to be able to identify with ease how many arguments are being used, and which one is which. In the first example, it is easy to miss the fact that the first two arguments are put on the same line. The second example is even worse, as it is really challenging to spot that the style is actually specified—one could easily believe that `CreateLine` is called with only four arguments, and this could lead to a cascade of problems if the method has overloads.
+
+**2.** If a single line break is introduced in a middle of a large list of arguments in order to avoid for a line to become too long, it would quickly become messy as soon as the code changes and the maximum length is reached once more.
+
+## Notes
+
+When encountering a method where the list of arguments is way too long to be put on a single line, ask yourself:
+
+ - If the *number* of parameters is not too big. If a method takes, say, twelve parameters, there are chances that the method itself needs to be simplified.
+ - If the individual arguments are not too long. If you find yourself with an argument such as: `..., new Dictionary<SomeComplexType, AnythingElse> { [firstKey] = LetUsGenerateTheFirstValue(arg1, arg2, arg3), [secondKey] = DoSomethingElse() }, ...`, move it to a variable.

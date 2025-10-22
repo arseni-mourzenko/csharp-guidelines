@@ -1,0 +1,31 @@
+# SM0006 Do not use arrays
+
+Do not use arrays, unless you specifically need a collection with an immutable length, but mutable elements.
+
+Note: some historical code that dates back to C# 1.0 still uses arrays. Example: `static void Main(string[] args)` or `string.Split()`. When using those legacy interfaces, try minimize the pollution of your code by the arrays.
+
+## Example
+
+Don't do that:
+
+```csharp
+int[] values = [9, 1, 4, 5];
+```
+
+Instead, do:
+
+```csharp
+IEnumerable<int> values = [9, 1, 4, 5];
+```
+
+or use a more specific type that corresponds to the actual need: `ICollection<T>`, a doubly-linked list, a queue, `ConcurrentBag<T>`, `ReadOnlyCollection<T>`, etc.
+
+## Reasons
+
+**1.** An array is a weird and very special data structure: its length is immutable, but its elements are mutable. Such specificity is rarely needed. A practice of using an array “by default” when someone needs to store zero or more objects of a given type is wrong. There is nothing default in an array.
+
+**2.** The actual data that is being stored, and the way it is manipulated, may not even be suited to be stored contigously.
+
+**3.** An array is a bit low level for general use—it could make sense in C++, but less in C#. A `List<T>` is based on an array, and provides a good abstraction level over the actual way elements are stored in an array, or what happens when a list grows beyond the initial capacity of the underlying array. You may intentionally seek the low level abstraction provided by an array, but that shouldn't be your default choice by any means. And if you actually want to do low level stuff, [`Span<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.span-1?view=net-9.0), or maybe even [`Vector128<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.vector128?view=net-9.0) may possibly be what you are looking for.
+
+**4.** For beginners, arrays are not intuitive to use, as beginners usually don't understand that an array is a very special data structure. It is not unusual for a beginner to create an array `x`, write `x.Add(...)`, and be puzzled by the error returned by the compiler.

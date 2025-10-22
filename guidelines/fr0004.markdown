@@ -1,0 +1,7 @@
+# FR0004 Don't cut words for variable names in the middle.
+
+I'm sure you don't enjo readin text that has lette missin, becau someon was lazy enou to writ the comple words.
+
+Well, this applies to the names of variables as well.
+
+A commission, for instance, is a `commission`. Not a `commis` and not a `comm` or `com`. The entire form is clear and to the point. Words cut in the middle are, on the other hand, unclear and error prone. Is `com` referring to commission, or communication, commander, or compiler? No way to know.

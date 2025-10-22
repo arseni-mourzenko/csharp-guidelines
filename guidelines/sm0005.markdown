@@ -1,0 +1,45 @@
+# SM0005 Make types of parameters as abstract as possible
+
+Do not require the caller of a method to pass a concrete type, when the method doesn't use anything that this type adds compared to its parent type or an interface.
+
+## Example
+
+Don't do that:
+
+```csharp
+private static string SumUpGroups(List<Group> groups) =>
+    groups.Select(x => x.Elements.Count()).Sum();
+```
+
+or:
+
+```csharp
+private void ProcessCategories(SortedSet<int> ids)
+{
+    // It is crucial that `ids` does not contain duplicates, otherwise, the method will fail catastrophically.
+}
+```
+
+Instead, do:
+
+```csharp
+private static string SumUpGroups(IEnumerable<Group> groups) ...
+```
+
+and:
+
+```csharp
+private void ProcessCategories(ISet<int> categories) ...
+```
+
+As the first method simply loops through `groups`, it doesn't use anything that is not already provided by the most generic type `IEnumerable<T>`, that is, a sequence. It doesn't need it to be a list. It doesn't even need it to be a collection. If the first method was using some specificities of a collection (such as the need to know the number of elements in advance), it could ask for an `ICollection<T>`.
+
+The second method needs the elements to be unique. But uniqueness is not guaranteed only by `SortedSet<T>`. For instance, `ImmutableHashSet<T>` is also a set. Therefore, the method should ask for *just a set*, not one very particular type of a set.
+
+## Reasons
+
+**1.** The types of parameters help the readers to infer the contract of a method. By asking for something more specific than is actually needed, the method misleads the callers.
+
+**2.** It may require to the caller an extra effort to create a specific type that is needed by the method. For instance, one would need to call `ToList()` when calling the incorrect `SumUpGroups()`, if `groups` are stored in a collection that is not a list.
+
+**3.** The burden could increase if different methods ask for different types. Say you have a `ICollection<int>`, but the first method you call asks for a `IReadOnlyList<int>` while the second one asks for a `HashSet<int>`. There is no type that is at the same time a read-only list and a hash set. Therefore, you need to create additional objects just for those methods. If it appears that the first method just needs a `IReadOnlyCollection<int>`, as it doesn't use any specificity of an actual list, then the caller can simply create a single hash set and pass it to both methods, as `HashSet<T>` implements `IReadOnlyCollection<int>`.

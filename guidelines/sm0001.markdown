@@ -1,0 +1,41 @@
+# SM0001 Do not repeat the same type twice during initialization
+
+When a variable is declared and initialized at the same time, do not repeat the type if it is the same.
+
+## Example
+
+Don't do that:
+
+```csharp
+Square s = new Square();
+```
+
+Instead, do:
+
+```csharp
+var s = new Square();
+```
+
+or:
+
+```csharp
+Square s = new();
+```
+
+## Reasons
+
+**1.** There is no need to repeat stuff when it doesn't bring any benefit.
+
+**2.** The common practice is to specify the type of the variable *and* the type after `new` when those types differ. Example:
+
+```csharp
+Shape s = new Square(point, size);
+```
+
+Here, the variable `s` would later be treated as a shape, without actually knowing if it's a square, a rectangle, a circle, etc. The difference between the two types can be subtle. For instance, in the following example, it's just one letter difference:
+
+```csharp
+IContainedTransaction t = new ContainedTransaction();
+```
+
+Therefore, when encountering a piece of code which specifies the type of the variable and the type after `new`, one would believe that those types are different. If the types are actually the same, the reader would waste a few seconds glancing at the code, trying to understand what's happening. It's like if the code was shouting: “hey, be very careful, don't miss the... well, actually, no, there is nothing here to look about.”
