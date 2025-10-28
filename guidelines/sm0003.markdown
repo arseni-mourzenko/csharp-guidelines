@@ -1,0 +1,23 @@
+# SM0003 Do not use leading zeros in numbers
+
+When using numeric values in code, do not prefix them with one or multiple zeros, including when specifying dates.
+
+## Example
+
+Don't do that:
+
+```csharp
+var birthday = new DateOnly(1985, 04, 09);
+```
+
+Instead, do:
+
+```csharp
+var birthday = new DateOnly(1985, 4, 9);
+```
+
+## Reasons
+
+**1.** Those zeros don't add anything useful to the code.
+
+**2.** Some languages, such as JavaScript, don't just ignore leading zeros, but sometimes use them as an indication that the number is using octal notation. For instance, executing `072 + 1` in a browser console would produce 59, not 73.

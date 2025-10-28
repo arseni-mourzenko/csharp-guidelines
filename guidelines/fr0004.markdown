@@ -1,4 +1,4 @@
-# FR0004 Don't cut words for variable names in the middle.
+# FR0004 Do not cut words for variable names in the middle.
 
 I'm sure you don't enjo readin text that has lette missin, becau someon was lazy enou to writ the comple words.
 
