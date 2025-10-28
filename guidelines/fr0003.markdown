@@ -1,0 +1,46 @@
+# FR0003 Use consistent line breaks in call chains
+
+When writing call chains, either put every call on a separate line, or put all of them on the same line. Do not add arbitrary line breaks.
+
+## Example
+
+Don't do that:
+
+```csharp
+extractor.Prepare(databaseContext.Open(), true)
+    .LoadResults()
+    .Where(x => x.IsAvailable).Select(x => x.Average);
+```
+
+or that:
+
+```csharp
+extractorMock.Setup(x => x.FindAverage())
+    .Returns(0);
+```
+
+Instead, do:¹
+
+```csharp
+extractor
+    .Prepare(databaseContext.Open(), true)
+    .LoadResults()
+    .Where(x => x.IsAvailable)
+    .Select(x => x.Average);
+```
+
+and:
+
+```csharp
+extractorMock.Setup(x => x.FindAverage()).Returns(0);
+```
+
+## Reasons
+
+**1.** When reading code, it is important to be able to identify with ease the different parts of the chain. In the first example, it looks like the mock has only a `.Result()` with no `.Setup()`, which is weird. The second example is messy, requiring extra effort to understand what's going on.
+
+**2.** If a single line break is introduced in a middle of a long call chain in order to avoid for a line to become too long, it would quickly become messy as soon as the code changes and the maximum length is reached once more.
+
+---
+
+<sup>¹ While illustrative of the point that one shouldn't add arbitrary lines in a chain of calls, this particular example suffers from another issue: a high complexity, leading to a suboptimal maintainability index. In production code, such chain should likely be refactored in multiple methods.</sup>

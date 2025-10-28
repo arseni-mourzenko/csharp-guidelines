@@ -8,7 +8,7 @@ Each guideline starts by a summary and an example of wrong piece of code and a c
 
 1. [FR0001](guidelines/fr0001.markdown) Do not use arbitrary indentation to “align” code.
 1. [FR0002](guidelines/fr0002.markdown) Use consistent line breaks between arguments.
-1. FR0003 Call chains: break before every call or not at all; don't mix.
+1. [FR0003](guidelines/fr0003.markdown) Use consistent line breaks in call chains.
 1. [FR0004](guidelines/fr0004.markdown) Do not cut words for variable names in the middle.
 1. FR0005 Do not use arbitrary number of letters for variable names.
 
