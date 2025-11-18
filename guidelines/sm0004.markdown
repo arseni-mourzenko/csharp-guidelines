@@ -1,0 +1,56 @@
+# SM0004 Do not loop on collections with a `for`
+
+C#'s way to traverse a collection is by using `foreach`. Especially, avoid using `for`. Don't use `while` or `do while`, as `foreach` is usually simpler—under the hood, [it *is* an actual `while` loop](https://softwareengineering.stackexchange.com/a/178225/6605) that the compiler writes for you.
+
+## Example
+
+Don't do that:
+
+```csharp
+for (var i = 0; i < collection.Count; i++)
+{
+    DoSomething(collection[i]);
+}
+```
+
+Instead, do:
+
+```csharp
+foreach (var c in collection)
+{
+    DoSomething(c);
+}
+```
+
+## Reasons
+
+**1.** A `foreach` expresses intent. It literally tells: take the elements from the enumerator one by one, until the end is reached or until the loop hits a `break`, a `return`, or an exception. By comparison, `for` puts a lot of emphasis on the variable.
+
+**2.** A `for` loop is too prone to errors that could easily be introduced during refactoring. The errors include:
+
+ - Off-by-one. Example:
+
+    ```csharp
+    for (var i = 0; i <= collection.Count; i++)
+    {
+    }
+    ```
+
+ - Multiple evaluations of the condition. Example:
+
+    ```csharp
+    for (var i = 0; i <= SomeCostlyMethod(); i++)
+    {               // Too bad! ⤴
+    }
+    ```
+
+ - Multiple loops through the enumerator. Example:
+
+    ```csharp
+    sequence = GetSomethingFromDatabase();  // Returns an IEnumerable<T>.
+    for (var i = 0; i <= sequence.Count(); i++)
+    {                   // Too bad! ⤴
+    }
+    ```
+
+**3.** A `foreach` makes it possible to swap a collection for a sequence, with no modifications in code. With a `for`, either a potential performance issue is introduced by replacing `.Count` by `.Count()`, or the entire loop should be rewritten. This, in turn, discourages the use of the most generic types—and you definitively don't want someone be using collections over sequences without serious reasons.

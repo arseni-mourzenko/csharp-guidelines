@@ -17,7 +17,7 @@ Each guideline starts by a summary and an example of wrong piece of code and a c
 1. [SM0001](guidelines/sm0001.markdown) Do not repeat the same type twice during initialization.
 1. SM0002 Do not comment unnecessarily.
 1. [SM0003](guidelines/sm0003.markdown) Do not use leading zeros in numbers (JavaScript octal notation).
-1. SM0004 Do not loop on collections with a `for`, a `while`, or a `do while`.
+1. [SM0004](guidelines/sm0004.markdown) Do not loop on collections with a `for`.
 1. [SM0005](guidelines/sm0005.markdown) Make types of parameters as abstract as possible: example of incompatible types being requested from the caller by two consecutive methods.
 1. [SM0006](guidelines/sm0006.markdown) Do not use arrays.
 1. SM0007 Methods should do one and one only thing (misconception that the reader should not have to jump through lots of methods: if he does, there is something wrong with abstraction, such as unhelpful methods, etc.)
