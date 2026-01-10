@@ -1,0 +1,70 @@
+# SM0008 Do not compare with `true` or `false`
+
+In conditionals, do not write that a given value is equal to `true`, or that a given value is equal or different from `false`.
+
+## Example
+
+Don't do that:
+
+```csharp
+if (address.isValid == true)
+```
+
+or:
+
+```csharp
+if (requestFailed != false)
+```
+
+or:
+
+```csharp
+if (collection.Any() == false)
+```
+
+Instead, do:
+
+```csharp
+if (address.isValid)
+```
+
+and:
+
+```csharp
+if (!requestFailed)
+```
+
+and:
+
+```csharp
+if (!collection.Any())
+```
+
+## Reasons
+
+**1.** Explicit presence of `true` and `false` in this context is distracting.
+
+**2.** Such code being usually written by very inexperienced programmers, it presents a stylistic distraction.
+
+## Exceptions
+
+Occasionnally, code can be made clearer when using constants for boolean values in a specific domain. For example, a state of a switch can be represented as a boolean value, but to give it a meaning, two constants can be introduced:
+
+```csharp
+const bool On = true;
+const bool Off = false;
+```
+
+Then, those constants can be used explicitly in conditionals to make things clearer:
+
+```csharp
+if (LightSwitch.State == Off)
+```
+
+This is clearer compared to `if (!LightSwitch.State)`, as the constant adds a bit more domain context. However, sometimes such code can be rewritten by not using a boolean in the first place, or by introducing explicit and clear properties. The previous example could be rewritten as:
+
+```csharp
+if (LightSwitch.IsOff)
+```
+
+which is shorter to write and perfectly clear.
