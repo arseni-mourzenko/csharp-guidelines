@@ -1,0 +1,34 @@
+# FR0006 Do not use visually ambiguous glyphs as names.
+
+Avoid using glyphs that could be mistaken for other ones in one-letter names of variables.
+
+Depending on the fonts:
+
+ - A lowercase l can look as the digit 1 or a capital I.
+ - A capital O can look as the digit 0.
+
+## Example
+
+Don't do that:
+
+```csharp
+return lengths.Where(l => l > 0);
+```
+
+Instead, do:
+
+```csharp
+return lengths.Where(length => length > 0);
+```
+
+or:
+
+```csharp
+return lengths.Where(x => x > 0);
+```
+
+## Reasons
+
+**1.** Don't make code more difficult to read than it needs to be. While in general, it *is* possible to disambiguate a character with further inspection, it is much more practical to avoid such inspection in the first place.
+
+**2.** Cases where `l` for a variable (instead of a generic `x`) makes sense are pretty rare. The same goes for `I` and `O` for constants.

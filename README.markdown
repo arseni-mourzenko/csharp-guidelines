@@ -11,6 +11,7 @@ Each guideline starts by a summary and an example of wrong piece of code and a c
 1. [FR0003](guidelines/fr0003.markdown) Use consistent line breaks in call chains.
 1. [FR0004](guidelines/fr0004.markdown) Do not cut words for variable names in the middle.
 1. FR0005 Do not use arbitrary number of letters for variable names.
+1. [FR0006](guidelines/fr0006.markdown) Do not use visually ambiguous glyphs as names.
 
 ## Semantics
 
