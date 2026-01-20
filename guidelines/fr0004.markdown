@@ -5,3 +5,9 @@ I'm sure you don't enjo readin text that has lette missin, becau someon was lazy
 Well, this applies to the names of variables as well.
 
 A commission, for instance, is a `commission`. Not a `commis` and not a `comm` or `com`. The entire form is clear and to the point. Words cut in the middle are, on the other hand, unclear and error prone. Is `com` referring to commission, or communication, commander, or compiler? No way to know.
+
+## Limits
+
+**1.** If there is a short form of a domain term that is used so commonly that every actor is familiar with it, it can be used through the code.
+
+**2.** In a presence of a past usage that is part of a protocol or an interface that cannot be changed without breaking too many things, continue using the wrong writing, in order to (1) reduce cognitive load and (2) make it easier to find occurrences of the word. This situation is very similar to the mispelled HTTP's referer [sic] header (correct spelling: “referrer”).

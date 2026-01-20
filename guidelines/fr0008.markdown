@@ -1,0 +1,59 @@
+# FR0008 End the last element by a comma.
+
+When creating an enumeration by providing elements, one element per line, add a comma at the end of the last element.
+
+## Example
+
+Don't do that:
+
+```csharp
+IEnumerable<Rectangle> TestRectangles => [
+    new(0, 0, 5, 5),
+    new(4, 3, 7, 2),
+    new(1, 1, 1, 1)
+];  //             ↑ No comma here.
+```
+
+Instead, do:
+
+```csharp
+IEnumerable<Rectangle> TestRectangles => [
+    new(0, 0, 5, 5),
+    new(4, 3, 7, 2),
+    new(1, 1, 1, 1),
+];  //             ↑ Comma.
+```
+
+## Reasons
+
+**1.** When a new element is added at the end of the enumeration, one would have to first add a comma to the previous element, and only then append the new element on the next line. This would cause a diff of the change to cover two lines: one line changed, the other one added. If the comma already exists, the diff would be much simpler, showing only that one line is added.
+
+**2.** If elements are reordered (for instance sorted by alphabetical order), the line without a comma may end up in the middle of the enumeration, preventing the code from compiling.
+
+For instance, the example above would become:
+
+```csharp
+IEnumerable<Rectangle> TestRectangles => [
+    new(0, 0, 5, 5),
+    new(1, 1, 1, 1)  // Syntax error, ',' expected.
+    new(4, 3, 7, 2),
+];
+```
+
+This forces the person to go and fix an issue that could be easily prevented in the first place.
+
+## Limits
+
+**1.** Do not put a comma if the elements are all on the same line. While syntax such as `IEnumerable<int> values = [1, 2, 3,];` is allowed, it looks weird.
+
+**2.** If the elements are not expected to change or be reordered, such as in:
+
+```csharp
+IEnumerable<Color> PrimaryColors => [
+    new(255, 0, 0),
+    new(0, 255, 0),
+    new(0, 0, 255)
+];
+```
+
+none of the reasons below apply: no additional primary color would magically appear, and there is little chance for the colors to change order. In this situation, one may still decide to add a comma *for consistency*, but this is by no means mandatory.
