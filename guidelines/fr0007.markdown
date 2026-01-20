@@ -32,7 +32,7 @@ lens.Aperture = 2.8;
 
 **1.** Lots of people may be confused about such characters, and even more won't know how to write them, resorting to a tedious copy and paste.
 
-**2.** Intellisense and autocompletion may become less intuitive to use. For instance, you need to access a property *Δ*, that represents a difference. What exactly do you type? Or if you have an alphabetical list of properties, should you expect *Δ* to appear above or below the Latin characters?
+**2.** Intellisense and auto-completion may become less intuitive to use. For instance, you need to access a property *Δ*, that represents a difference. What exactly do you type? Or if you have an alphabetical list of properties, should you expect *Δ* to appear above or below the Latin characters?
 
 **3.** Some editors may not show Unicode characters correctly. At the moment of writing, for instance, Visual Studio Code under Linux renders `lens.𝑓` from the example above in a way that can only be qualified as abomination:
 
@@ -44,4 +44,4 @@ lens.Aperture = 2.8;
 
 ## Limits
 
-If an Unicode character is at the end of a name, rather than at the beginning, it won't mess up with Intellisense and programmers won't necessarily have to type it. If it is not visually ambiguious and is commonly used in a given domain, it *might* be justifiable to use it.
+If an Unicode character is at the end of a name, rather than at the beginning, it won't mess up with Intellisense and programmers won't necessarily have to type it. If it is not visually ambiguous and is commonly used in a given domain, it *might* be justifiable to use it.

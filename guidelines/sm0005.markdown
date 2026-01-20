@@ -32,7 +32,7 @@ and:
 private void ProcessCategories(ISet<int> categories) ...
 ```
 
-As the first method simply loops through `groups`, it doesn't use anything that is not already provided by the most generic type `IEnumerable<T>`, that is, a sequence. It doesn't need it to be a list. It doesn't even need it to be a collection. If the first method was using some specificities of a collection (such as the need to know the number of elements in advance), it could ask for an `ICollection<T>`.
+As the first method simply loops through `groups`, it doesn't use anything that is not already provided by the most generic type `IEnumerable<T>`, that is, a sequence. It doesn't need it to be a list. It doesn't even need it to be a collection. If the first method was using some specifics of a collection (such as the need to know the number of elements in advance), it could ask for an `ICollection<T>`.
 
 The second method needs the elements to be unique. But uniqueness is not guaranteed only by `SortedSet<T>`. For instance, `ImmutableHashSet<T>` is also a set. Therefore, the method should ask for *just a set*, not one very particular type of a set.
 

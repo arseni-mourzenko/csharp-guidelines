@@ -48,7 +48,7 @@ if (!collection.Any())
 
 ## Exceptions
 
-Occasionnally, code can be made clearer when using constants for boolean values in a specific domain. For example, a state of a switch can be represented as a boolean value, but to give it a meaning, two constants can be introduced:
+Occasionally, code can be made clearer when using constants for boolean values in a specific domain. For example, a state of a switch can be represented as a boolean value, but to give it a meaning, two constants can be introduced:
 
 ```csharp
 const bool On = true;

@@ -43,4 +43,4 @@ extractorMock.Setup(x => x.FindAverage()).Returns(0);
 
 ---
 
-<sup>¹ While illustrative of the point that one shouldn't add arbitrary lines in a chain of calls, this particular example suffers from another issue: a high complexity, leading to a suboptimal maintainability index. In production code, such chain should likely be refactored in multiple methods.</sup>
+<sup>¹ While illustrative of the point that one shouldn't add arbitrary lines in a chain of calls, this particular example suffers from another issue: a high complexity, leading to a sub-optimal maintainability index. In production code, such chain should likely be refactored in multiple methods.</sup>

@@ -10,4 +10,4 @@ A commission, for instance, is a `commission`. Not a `commis` and not a `comm` o
 
 **1.** If there is a short form of a domain term that is used so commonly that every actor is familiar with it, it can be used through the code.
 
-**2.** In a presence of a past usage that is part of a protocol or an interface that cannot be changed without breaking too many things, continue using the wrong writing, in order to (1) reduce cognitive load and (2) make it easier to find occurrences of the word. This situation is very similar to the mispelled HTTP's referer [sic] header (correct spelling: “referrer”).
+**2.** In a presence of a past usage that is part of a protocol or an interface that cannot be changed without breaking too many things, continue using the wrong writing, in order to (1) reduce cognitive load and (2) make it easier to find occurrences of the word. This situation is very similar to the misspelled HTTP's referer [sic] header (correct spelling: “referrer”).
