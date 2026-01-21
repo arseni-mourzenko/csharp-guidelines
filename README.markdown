@@ -13,7 +13,7 @@ Each guideline starts by a summary and an example of wrong piece of code and a c
 1. FR0005 Do not use arbitrary number of letters for variable names.
 1. [FR0006](guidelines/fr0006.markdown) Do not use visually ambiguous glyphs as names.
 1. [FR0007](guidelines/fr0007.markdown) Limit the usage of non-ASCII characters in names.
-1. [FR0008](guidelines/fr0008.markdown) End the last element by a comma.
+1. [FR0008](guidelines/fr0008.markdown) End the last element with a comma.
 
 ## Semantics
 

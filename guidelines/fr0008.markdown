@@ -1,4 +1,4 @@
-# FR0008 End the last element by a comma.
+# FR0008 End the last element with a comma.
 
 When creating an enumeration by providing elements, one element per line, add a comma at the end of the last element.
 
@@ -44,7 +44,7 @@ This forces the person to go and fix an issue that could be easily prevented in 
 
 ## Limits
 
-**1.** Do not put a comma if the elements are all on the same line. While syntax such as `IEnumerable<int> values = [1, 2, 3,];` is allowed, it looks weird.
+**1.** Do not put a comma if all the elements are on the same line. While syntax such as `IEnumerable<int> values = [1, 2, 3,];` is allowed, it looks weird.
 
 **2.** If the elements are not expected to change or be reordered, such as in:
 

@@ -1,6 +1,6 @@
 # FR0007 Limit the usage of non-ASCII characters in names.
 
-Avoid using Unicode (non-ASCII) characters in the names of members. This is especially true when there can be a confusion between those Unicode glyphs and some ASCII characters, such as the Greek gamma “γ” and the letter “y.”
+Avoid using Unicode (non-ASCII) characters in the names of members. This is especially true when there can be confusion between those Unicode glyphs and some ASCII characters, such as the Greek gamma “γ” and the letter “y.”
 
 ## Example
 
@@ -32,16 +32,16 @@ lens.Aperture = 2.8;
 
 **1.** Lots of people may be confused about such characters, and even more won't know how to write them, resorting to a tedious copy and paste.
 
-**2.** Intellisense and auto-completion may become less intuitive to use. For instance, you need to access a property *Δ*, that represents a difference. What exactly do you type? Or if you have an alphabetical list of properties, should you expect *Δ* to appear above or below the Latin characters?
+**2.** IntelliSense and auto-completion may become less intuitive to use. For instance, you need to access a property *Δ*, that represents a difference. What exactly do you type? Or if you have an alphabetical list of properties, should you expect *Δ* to appear above or below the Latin characters?
 
-**3.** Some editors may not show Unicode characters correctly. At the moment of writing, for instance, Visual Studio Code under Linux renders `lens.𝑓` from the example above in a way that can only be qualified as abomination:
+**3.** Some editors may not show Unicode characters correctly. At the moment of writing, for instance, Visual Studio Code under Linux renders `lens.𝑓` from the example above in a way that can only be qualified as an abomination:
 
 ![](../illustrations/fr0007/unicode-f.png)
 
-**4.** Rules related to small vs. capital letters may not play well with Unicode characters. Taking the example above, should one write `const double γ = 0.577215664901;`, messing with the rule that constants should start with a capital letter, or switch to `const double Γ = 0.577215664901;`, forgetting the Euler's constant is not *Γ*, but *γ*?
+**4.** Rules related to small vs. capital letters may not play well with Unicode characters. Taking the example above, should one write `const double γ = 0.577215664901;`, messing with the rule that constants should start with a capital letter, or switch to `const double Γ = 0.577215664901;`, forgetting that Euler's constant is not *Γ*, but *γ*?
 
 **5.** Typographic rules don't play well with source code. For instance, Euler's constant is not γ, but italic *γ*, so for the sake of correctness, it should be written `𝛾` in code. But now you have one more problem. It's already too difficult to use `γ`, and `γ` vs. `𝛾` only adds to the confusion.
 
 ## Limits
 
-If an Unicode character is at the end of a name, rather than at the beginning, it won't mess up with Intellisense and programmers won't necessarily have to type it. If it is not visually ambiguous and is commonly used in a given domain, it *might* be justifiable to use it.
+If a Unicode character is at the end of a name, rather than at the beginning, it won't mess up with IntelliSense, and programmers won't necessarily have to type it. If it is not visually ambiguous and is commonly used in a given domain, it *might* be justifiable to use it.
